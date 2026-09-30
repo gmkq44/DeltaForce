@@ -257,7 +257,7 @@
 
         <!-- Bottom Notice -->
         <div class="bg-black/40 border border-gray-800/80 rounded-lg p-3 text-center text-xs text-gray-400 space-y-1">
-            <p><i class="fa-solid fa-shield-halved text-tactical-neonGreen mr-1"></i>密码每日 00:00 自动跟进更新。改枪码支持在【三角洲行动-改枪界面】直接复制导入。</p>
+            <p><i class="fa-solid fa-shield-halved text-tactical-neonGreen mr-1"></i>密码每日 00:00 后自动更新<span id="dataUpdated"></span>。改枪码支持在【三角洲行动-改枪界面】直接复制导入。</p>
         </div>
     </main>
 
@@ -303,6 +303,9 @@
                         进场与解密说明加载中...
                     </p>
                 </div>
+
+                <!-- Location Images -->
+                <div id="modalImages" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
             </div>
 
             <!-- Modal Footer -->
@@ -389,7 +392,7 @@
 
     <script>
         // Core Database matching screenshot exact map dataset with today & yesterday codes
-        const MAP_DATA = [
+        let MAP_DATA = [
             {
                 id: "az3_nuclear",
                 mapName: "AZ3核电站",
@@ -678,7 +681,7 @@
             if (viewMode === "strip") {
                 container.className = "space-y-3";
                 filtered.forEach(item => {
-                    const displayCode = isYesterday ? item.yesterdayCode : item.code;
+                    const displayCode = (isYesterday ? item.yesterdayCode : item.code) || "--";
                     const codeColor = isYesterday ? 'text-amber-400' : 'text-tactical-neonGreen';
                     const badgeHtml = isYesterday ? '<span class="text-[10px] bg-amber-500/20 border border-amber-500/40 text-amber-400 px-1 py-0.2 rounded font-mono">昨日</span>' : '';
 
@@ -709,7 +712,7 @@
             } else {
                 container.className = "grid grid-cols-1 sm:grid-cols-2 gap-4 space-y-0";
                 filtered.forEach(item => {
-                    const displayCode = isYesterday ? item.yesterdayCode : item.code;
+                    const displayCode = (isYesterday ? item.yesterdayCode : item.code) || "--";
                     const codeColor = isYesterday ? 'text-amber-400' : 'text-tactical-neonGreen';
                     const labelText = isYesterday ? '昨日密码' : '每日破解密码';
 
@@ -866,7 +869,7 @@
             const isYesterday = currentDateMode === "yesterday";
             let text = `【三角洲行动 ${isYesterday ? '昨日历史密码' : '今日最新破译密码'}】\n`;
             MAP_DATA.forEach(item => {
-                const code = isYesterday ? item.yesterdayCode : item.code;
+                const code = (isYesterday ? item.yesterdayCode : item.code) || "--";
                 text += `${item.mapName}: ${code}\n`;
             });
             const tempInput = document.createElement("textarea");
@@ -886,9 +889,13 @@
             document.getElementById("modalTitle").innerText = `${item.mapName} - 点位简述`;
             document.getElementById("modalCodeDisplay").innerText = item.code;
             document.getElementById("modalPrevCodeDisplay").innerText = item.yesterdayCode;
-            document.getElementById("modalKeyReq").innerText = item.keyReq;
-            document.getElementById("modalRouteText").innerText = item.desc;
-            document.getElementById("modalCoordinates").innerText = item.coord;
+            document.getElementById("modalPrevCodeDisplay").innerText = item.yesterdayCode || "--";
+            document.getElementById("modalKeyReq").innerText = item.keyReq || "密码门";
+            document.getElementById("modalRouteText").innerText = item.desc || "暂无点位说明";
+            document.getElementById("modalCoordinates").innerText = item.coord || item.mapName;
+            document.getElementById("modalImages").innerHTML = (item.images || []).map(src =>
+                `<a href="${src}" target="_blank" rel="noopener noreferrer"><img src="${src}" referrerpolicy="no-referrer" loading="lazy" alt="${item.mapName} 点位图" class="w-full rounded border border-gray-800"></a>`
+            ).join('');
 
             document.getElementById("mapModal").classList.remove("hidden");
         }
@@ -915,9 +922,24 @@
             setInterval(update, 1000);
         }
 
+        // Load auto-updated passwords (data.json is refreshed daily by GitHub Actions)
+        async function loadPasswordData() {
+            try {
+                const res = await fetch(`data.json?t=${Date.now()}`, { cache: "no-store" });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data.maps) || !data.maps.length) return;
+                MAP_DATA = data.maps;
+                const el = document.getElementById("dataUpdated");
+                if (el && data.updatedAt) el.innerText = `（最后更新：${data.updatedAt.slice(0, 16).replace("T", " ")}）`;
+                if (activeTabMode === "passwords") renderList();
+            } catch (e) { /* offline or missing: keep built-in data */ }
+        }
+
         window.onload = function() {
             startTimer();
             renderList();
+            loadPasswordData();
         };
 
         if ('serviceWorker' in navigator) {
