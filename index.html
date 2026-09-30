@@ -137,29 +137,29 @@
 <body class="min-h-screen flex flex-col font-sans selection:bg-tactical-neonGreen selection:text-black">
 
     <!-- Top HUD Header -->
-    <header class="border-b border-gray-800/80 bg-black/70 backdrop-blur-md sticky top-0 z-40">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <header class="border-b border-gray-800/80 bg-black/70 backdrop-blur-md sticky top-0 z-40" style="padding-top: env(safe-area-inset-top)">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 min-h-16 py-2 flex items-center justify-between gap-2">
             <!-- Logo & Title -->
-            <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 bg-tactical-neonGreen/10 border border-tactical-neonGreen/60 flex items-center justify-center rounded text-tactical-neonGreen tech-corners">
+            <div class="flex items-center space-x-3 min-w-0">
+                <div class="shrink-0 w-9 h-9 bg-tactical-neonGreen/10 border border-tactical-neonGreen/60 flex items-center justify-center rounded text-tactical-neonGreen tech-corners">
                     <i class="fa-solid fa-key text-lg"></i>
                 </div>
                 <div>
                     <div class="flex items-center space-x-2">
-                        <span class="font-tech text-lg font-bold tracking-wider text-white">DELTA FORCE</span>
-                        <span class="text-[10px] bg-tactical-neonGreen/20 text-tactical-neonGreen px-1.5 py-0.5 rounded border border-tactical-neonGreen/40 font-tech">CIPHER V2.0</span>
+                        <span class="font-tech text-base sm:text-lg font-bold tracking-wider text-white whitespace-nowrap">DELTA FORCE</span>
+                        <span class="hidden sm:inline text-[10px] bg-tactical-neonGreen/20 text-tactical-neonGreen px-1.5 py-0.5 rounded border border-tactical-neonGreen/40 font-tech">CIPHER V2.0</span>
                     </div>
-                    <p class="text-[11px] text-gray-400">三角洲行动 · 每日地图密码速查站</p>
+                    <p class="hidden sm:block text-[11px] text-gray-400">三角洲行动 · 每日地图密码速查站</p>
                 </div>
             </div>
 
             <!-- Tab Switcher Navigation -->
-            <div class="flex items-center bg-black/60 p-1 rounded-xl border border-gray-800 space-x-1">
-                <button id="tabPasswordsBtn" onclick="switchTabMode('passwords')" class="px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm">
+            <div class="shrink-0 flex items-center bg-black/60 p-1 rounded-xl border border-gray-800 space-x-1">
+                <button id="tabPasswordsBtn" onclick="switchTabMode('passwords')" class="whitespace-nowrap px-3 sm:px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm">
                     <i class="fa-solid fa-key text-xs"></i>
                     <span>每日密码</span>
                 </button>
-                <button id="tabGunsBtn" onclick="switchTabMode('guns')" class="px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm">
+                <button id="tabGunsBtn" onclick="switchTabMode('guns')" class="whitespace-nowrap px-3 sm:px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm">
                     <i class="fa-solid fa-gun text-xs"></i>
                     <span>改枪方案</span>
                 </button>
@@ -188,31 +188,31 @@
                 </div>
 
                 <!-- Controls Group -->
-                <div class="flex items-center justify-between sm:justify-end gap-2 text-xs">
+                <div class="flex flex-wrap items-center justify-between sm:justify-end gap-2 text-xs">
                     <!-- Date Selector Toggle -->
                     <div class="bg-gray-900 p-0.5 rounded border border-gray-800 flex items-center">
-                        <button id="dateTodayBtn" onclick="setDateMode('today')" class="px-2.5 py-1 rounded text-black bg-tactical-neonGreen font-bold transition flex items-center gap-1 text-[11px]">
+                        <button id="dateTodayBtn" onclick="setDateMode('today')" class="whitespace-nowrap px-2.5 py-1 rounded text-black bg-tactical-neonGreen font-bold transition flex items-center gap-1 text-[11px]">
                             <span>今日密码</span>
                         </button>
-                        <button id="dateYesterdayBtn" onclick="setDateMode('yesterday')" class="px-2.5 py-1 rounded text-gray-400 hover:text-amber-400 transition flex items-center gap-1 text-[11px]">
+                        <button id="dateYesterdayBtn" onclick="setDateMode('yesterday')" class="whitespace-nowrap px-2.5 py-1 rounded text-gray-400 hover:text-amber-400 transition flex items-center gap-1 text-[11px]">
                             <span>昨日历史</span>
                         </button>
                     </div>
 
                     <!-- View Mode Toggle -->
                     <div class="bg-gray-900 p-0.5 rounded border border-gray-800 flex items-center">
-                        <button id="viewStripBtn" onclick="switchView('strip')" class="px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]">
+                        <button id="viewStripBtn" onclick="switchView('strip')" class="whitespace-nowrap px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]">
                             <i class="fa-solid fa-bars"></i>
                             <span>条形</span>
                         </button>
-                        <button id="viewCardBtn" onclick="switchView('card')" class="px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]">
+                        <button id="viewCardBtn" onclick="switchView('card')" class="whitespace-nowrap px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]">
                             <i class="fa-solid fa-border-all"></i>
                             <span>卡片</span>
                         </button>
                     </div>
 
                     <!-- Quick Copy All Button -->
-                    <button onclick="copyAllTodayPasswords()" class="px-3 py-1.5 bg-tactical-neonGreen/10 border border-tactical-neonGreen/40 text-tactical-neonGreen hover:bg-tactical-neonGreen hover:text-black rounded font-bold transition flex items-center space-x-1.5 text-[11px]">
+                    <button onclick="copyAllTodayPasswords()" class="whitespace-nowrap px-3 py-1.5 bg-tactical-neonGreen/10 border border-tactical-neonGreen/40 text-tactical-neonGreen hover:bg-tactical-neonGreen hover:text-black rounded font-bold transition flex items-center space-x-1.5 text-[11px]">
                         <i class="fa-solid fa-copy"></i>
                         <span>一键全复制</span>
                     </button>
@@ -561,14 +561,14 @@
             const gunsSec = document.getElementById("gunsSection");
 
             if (mode === 'passwords') {
-                passBtn.className = "px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm";
-                gunsBtn.className = "px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm";
+                passBtn.className = "whitespace-nowrap px-3 sm:px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm";
+                gunsBtn.className = "whitespace-nowrap px-3 sm:px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm";
                 passSec.classList.remove("hidden");
                 gunsSec.classList.add("hidden");
                 renderList();
             } else {
-                gunsBtn.className = "px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm";
-                passBtn.className = "px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm";
+                gunsBtn.className = "whitespace-nowrap px-3 sm:px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm";
+                passBtn.className = "whitespace-nowrap px-3 sm:px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm";
                 gunsSec.classList.remove("hidden");
                 passSec.classList.add("hidden");
                 renderGuns();
@@ -581,11 +581,11 @@
             const cardBtn = document.getElementById("viewCardBtn");
             if (!stripBtn || !cardBtn) return;
             if (mode === 'strip') {
-                stripBtn.className = "px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]";
-                cardBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]";
+                stripBtn.className = "whitespace-nowrap px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]";
+                cardBtn.className = "whitespace-nowrap px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]";
             } else {
-                cardBtn.className = "px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]";
-                stripBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]";
+                cardBtn.className = "whitespace-nowrap px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]";
+                stripBtn.className = "whitespace-nowrap px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]";
             }
             renderList();
         }
@@ -642,11 +642,11 @@
             const yesterdayBtn = document.getElementById("dateYesterdayBtn");
 
             if (mode === 'today') {
-                todayBtn.className = "px-2.5 py-1 rounded text-black bg-tactical-neonGreen font-bold transition flex items-center gap-1 text-[11px]";
-                yesterdayBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-amber-400 transition flex items-center gap-1 text-[11px]";
+                todayBtn.className = "whitespace-nowrap px-2.5 py-1 rounded text-black bg-tactical-neonGreen font-bold transition flex items-center gap-1 text-[11px]";
+                yesterdayBtn.className = "whitespace-nowrap px-2.5 py-1 rounded text-gray-400 hover:text-amber-400 transition flex items-center gap-1 text-[11px]";
             } else {
-                yesterdayBtn.className = "px-2.5 py-1 rounded text-black bg-amber-400 font-bold transition flex items-center gap-1 text-[11px]";
-                todayBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-tactical-neonGreen transition flex items-center gap-1 text-[11px]";
+                yesterdayBtn.className = "whitespace-nowrap px-2.5 py-1 rounded text-black bg-amber-400 font-bold transition flex items-center gap-1 text-[11px]";
+                todayBtn.className = "whitespace-nowrap px-2.5 py-1 rounded text-gray-400 hover:text-tactical-neonGreen transition flex items-center gap-1 text-[11px]";
             }
             renderList();
         }
