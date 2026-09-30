@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三角洲行动 - 每日密码破译站 | Delta Force Passwords</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tactical: {
+                            bg: '#0a0d12',
+                            card: '#121820',
+                            stripBg: 'rgba(16, 26, 35, 0.85)',
+                            stripBorder: 'rgba(55, 75, 95, 0.5)',
+                            neonGreen: '#32e084',
+                            neonHover: '#26c370',
+                            accent: '#10b981',
+                            gold: '#f59e0b',
+                            textMuted: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                        tech: ['"Chakra Petch"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #070a0e;
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(50, 224, 132, 0.06) 0%, transparent 60%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 24px 24px, 24px 24px;
+        }
+
+        /* Tactical Strip Card Styling */
+        .tactical-strip {
+            position: relative;
+            background: linear-gradient(90deg, rgba(14, 23, 31, 0.9) 0%, rgba(10, 17, 24, 0.85) 100%);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            transition: all 0.2s ease;
+        }
+        .tactical-strip:hover {
+            border-color: rgba(50, 224, 132, 0.6);
+            box-shadow: 0 0 12px rgba(50, 224, 132, 0.15);
+        }
+
+        /* Sci-Fi Corner Brackets */
+        .tech-corners {
+            position: relative;
+        }
+        .tech-corners::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; width: 6px; height: 6px;
+            border-top: 2px solid #32e084;
+            border-left: 2px solid #32e084;
+            pointer-events: none;
+        }
+        .tech-corners::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; right: -2px; width: 6px; height: 6px;
+            border-bottom: 2px solid #32e084;
+            border-right: 2px solid #32e084;
+            pointer-events: none;
+        }
+
+        /* Tactical Copy Button */
+        .btn-tactical-copy {
+            background: linear-gradient(135deg, #32e084 0%, #20be6b 100%);
+            color: #05130b;
+            font-weight: 800;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.15s ease-in-out;
+        }
+        .btn-tactical-copy::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0, rgba(0,0,0,0.05) 2px, transparent 0, transparent 6px);
+        }
+        .btn-tactical-copy:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+            box-shadow: 0 0 14px rgba(50, 224, 132, 0.4);
+        }
+        .btn-tactical-copy:active {
+            transform: scale(0.97);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080c10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #32e084;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-tactical-neonGreen selection:text-black">
+
+    <!-- Top HUD Header -->
+    <header class="border-b border-gray-800/80 bg-black/70 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-tactical-neonGreen/10 border border-tactical-neonGreen/60 flex items-center justify-center rounded text-tactical-neonGreen tech-corners">
+                    <i class="fa-solid fa-key text-lg"></i>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-tech text-lg font-bold tracking-wider text-white">DELTA FORCE</span>
+                        <span class="text-[10px] bg-tactical-neonGreen/20 text-tactical-neonGreen px-1.5 py-0.5 rounded border border-tactical-neonGreen/40 font-tech">CIPHER V2.0</span>
+                    </div>
+                    <p class="text-[11px] text-gray-400">三角洲行动 · 每日地图密码速查站</p>
+                </div>
+            </div>
+
+            <!-- Tab Switcher Navigation -->
+            <div class="flex items-center bg-black/60 p-1 rounded-xl border border-gray-800 space-x-1">
+                <button id="tabPasswordsBtn" onclick="switchTabMode('passwords')" class="px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm">
+                    <i class="fa-solid fa-key text-xs"></i>
+                    <span>每日密码</span>
+                </button>
+                <button id="tabGunsBtn" onclick="switchTabMode('guns')" class="px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm">
+                    <i class="fa-solid fa-gun text-xs"></i>
+                    <span>改枪方案</span>
+                </button>
+            </div>
+
+            <!-- Server Clock -->
+            <div class="hidden sm:flex items-center space-x-2 bg-gray-900/80 px-3 py-1.5 rounded border border-gray-800 text-gray-300 font-tech text-xs">
+                <i class="fa-solid fa-clock text-tactical-neonGreen"></i>
+                <span id="resetTimer" class="text-tactical-neonGreen font-mono font-bold">00:00:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- Passwords Section Container -->
+        <div id="passwordsSection" class="space-y-4">
+            <!-- Filter & Controls Toolbar -->
+            <div class="bg-black/40 p-3 rounded-lg border border-gray-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <!-- Search Box -->
+                <div class="relative flex-grow max-w-md">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="搜索地图名称或密码 (例: 零号大坝, 0533...)" 
+                           class="w-full bg-slate-900 border border-gray-800 rounded-md pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-tactical-neonGreen transition">
+                </div>
+
+                <!-- Controls Group -->
+                <div class="flex items-center justify-between sm:justify-end gap-2 text-xs">
+                    <!-- Date Selector Toggle -->
+                    <div class="bg-gray-900 p-0.5 rounded border border-gray-800 flex items-center">
+                        <button id="dateTodayBtn" onclick="setDateMode('today')" class="px-2.5 py-1 rounded text-black bg-tactical-neonGreen font-bold transition flex items-center gap-1 text-[11px]">
+                            <span>今日密码</span>
+                        </button>
+                        <button id="dateYesterdayBtn" onclick="setDateMode('yesterday')" class="px-2.5 py-1 rounded text-gray-400 hover:text-amber-400 transition flex items-center gap-1 text-[11px]">
+                            <span>昨日历史</span>
+                        </button>
+                    </div>
+
+                    <!-- View Mode Toggle -->
+                    <div class="bg-gray-900 p-0.5 rounded border border-gray-800 flex items-center">
+                        <button id="viewStripBtn" onclick="switchView('strip')" class="px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]">
+                            <i class="fa-solid fa-bars"></i>
+                            <span>条形</span>
+                        </button>
+                        <button id="viewCardBtn" onclick="switchView('card')" class="px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]">
+                            <i class="fa-solid fa-border-all"></i>
+                            <span>卡片</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Copy All Button -->
+                    <button onclick="copyAllTodayPasswords()" class="px-3 py-1.5 bg-tactical-neonGreen/10 border border-tactical-neonGreen/40 text-tactical-neonGreen hover:bg-tactical-neonGreen hover:text-black rounded font-bold transition flex items-center space-x-1.5 text-[11px]">
+                        <i class="fa-solid fa-copy"></i>
+                        <span>一键全复制</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Password Entries Container -->
+            <div id="passwordContainer" class="space-y-3">
+                <!-- Dynamic items rendered via JS -->
+            </div>
+        </div>
+
+        <!-- Gunsmith Section Container (Hidden by default) -->
+        <div id="gunsSection" class="hidden space-y-4">
+            <!-- Gun Search / Quick Filter Header -->
+            <div class="bg-black/40 p-3 rounded-lg border border-gray-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <div class="relative flex-grow max-w-md">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
+                    <input type="text" id="gunSearchInput" oninput="handleGunSearch()" placeholder="搜索枪械名称或配件类型 (如: UZI, M4A1, 腾龙, 无后座...)" 
+                           class="w-full bg-slate-900 border border-gray-800 rounded-md pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-tactical-neonGreen transition">
+                </div>
+                <div class="flex items-center space-x-1.5 text-xs">
+                    <span class="text-gray-400">快速筛选:</span>
+                    <button onclick="filterGun('all')" class="px-2.5 py-1 bg-tactical-neonGreen/20 text-tactical-neonGreen border border-tactical-neonGreen/40 rounded hover:bg-tactical-neonGreen hover:text-black font-bold transition text-[11px]">全部</button>
+                    <button onclick="filterGun('smg')" class="px-2.5 py-1 bg-slate-800 text-gray-300 border border-gray-700 rounded hover:text-white transition text-[11px]">冲锋枪</button>
+                    <button onclick="filterGun('rifle')" class="px-2.5 py-1 bg-slate-800 text-gray-300 border border-gray-700 rounded hover:text-white transition text-[11px]">步枪</button>
+                </div>
+            </div>
+
+            <!-- Guns Grid Container -->
+            <div id="gunsmithContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamic Gun Cards Rendered Here -->
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden py-12 text-center space-y-3 bg-slate-900/40 rounded-xl border border-dashed border-gray-800">
+            <i class="fa-solid fa-folder-open text-3xl text-gray-600"></i>
+            <p class="text-gray-400 text-xs">未搜索到匹配的记录</p>
+            <button onclick="resetSearch()" class="text-xs text-tactical-neonGreen hover:underline">清空搜索条件</button>
+        </div>
+
+        <!-- Bottom Notice -->
+        <div class="bg-black/40 border border-gray-800/80 rounded-lg p-3 text-center text-xs text-gray-400 space-y-1">
+            <p><i class="fa-solid fa-shield-halved text-tactical-neonGreen mr-1"></i>密码每日 00:00 自动跟进更新。改枪码支持在【三角洲行动-改枪界面】直接复制导入。</p>
+        </div>
+    </main>
+
+    <!-- Location & Route Guide Modal -->
+    <div id="mapModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-tactical-card border border-tactical-neonGreen/40 w-full max-w-xl rounded-xl overflow-hidden shadow-2xl flex flex-col tech-corners max-h-[90vh]">
+            <!-- Header -->
+            <div class="p-4 border-b border-gray-800 flex items-center justify-between bg-black/60 shrink-0">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-info text-tactical-neonGreen text-lg"></i>
+                    <h3 id="modalTitle" class="font-bold text-white text-sm sm:text-base">地图点位与解密简述</h3>
+                </div>
+                <button onclick="closeMapModal()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-5 space-y-4 overflow-y-auto text-xs">
+                <!-- Info Grid -->
+                <div class="grid grid-cols-3 gap-2 font-mono">
+                    <div class="bg-black/50 p-2.5 rounded border border-gray-800">
+                        <div class="text-gray-500 text-[10px]">今日密码</div>
+                        <div id="modalCodeDisplay" class="text-base sm:text-lg font-bold text-tactical-neonGreen">0000</div>
+                    </div>
+                    <div class="bg-black/50 p-2.5 rounded border border-gray-800">
+                        <div class="text-gray-500 text-[10px]">昨日密码</div>
+                        <div id="modalPrevCodeDisplay" class="text-base sm:text-lg font-bold text-amber-400">0000</div>
+                    </div>
+                    <div class="bg-black/50 p-2.5 rounded border border-gray-800">
+                        <div class="text-gray-500 text-[10px]">凭证要求</div>
+                        <div id="modalKeyReq" class="font-bold text-gray-200 text-xs mt-1">纯密码锁</div>
+                    </div>
+                </div>
+
+                <!-- Step Description -->
+                <div class="bg-black/40 p-4 rounded border border-gray-800 space-y-2">
+                    <div class="text-tactical-neonGreen font-bold flex items-center gap-1.5 text-xs sm:text-sm">
+                        <i class="fa-solid fa-align-left"></i>
+                        <span>点位与解密路线简述</span>
+                    </div>
+                    <p id="modalRouteText" class="text-gray-200 text-xs sm:text-sm leading-relaxed">
+                        进场与解密说明加载中...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-3 border-t border-gray-800 bg-black/60 flex items-center justify-between">
+                <span id="modalCoordinates" class="text-[11px] text-tactical-neonGreen font-mono">SECTOR CODE: AZ3-N1</span>
+                <button onclick="closeMapModal()" class="px-4 py-1.5 bg-gray-800 hover:bg-gray-700 text-white rounded text-xs font-bold transition">
+                    关闭窗口
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gunsmith Detail Modal -->
+    <div id="gunModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-tactical-card border border-tactical-neonGreen/40 w-full max-w-2xl rounded-xl overflow-hidden shadow-2xl flex flex-col tech-corners max-h-[92vh]">
+            <!-- Modal Header -->
+            <div class="p-4 border-b border-gray-800 flex items-center justify-between bg-black/70 shrink-0">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded bg-tactical-neonGreen/20 border border-tactical-neonGreen/60 flex items-center justify-center text-tactical-neonGreen">
+                        <i class="fa-solid fa-gun text-sm"></i>
+                    </div>
+                    <div>
+                        <h3 id="gunModalName" class="font-tech font-bold text-white text-base">UZI 冲锋枪 - 改枪拆解图</h3>
+                        <p id="gunModalTag" class="text-[10px] text-tactical-neonGreen font-mono">META BUILD CODE</p>
+                    </div>
+                </div>
+                <button onclick="closeGunModal()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-5 space-y-4 overflow-y-auto text-xs">
+                <!-- Category Banner -->
+                <div class="bg-black/60 p-3 rounded-lg border border-gray-800 flex items-center justify-between font-tech">
+                    <span class="text-white font-bold text-xs sm:text-sm">枪械改装方案规格</span>
+                    <span id="gunModalCategoryBadge" class="bg-tactical-neonGreen/10 border border-tactical-neonGreen/30 text-[10px] px-2.5 py-0.5 rounded text-tactical-neonGreen font-mono font-bold">SMG</span>
+                </div>
+
+                <!-- Code Copy Box -->
+                <div class="bg-black/50 p-3 rounded-lg border border-gray-800 flex items-center justify-between">
+                    <div>
+                        <div class="text-gray-400 text-[10px]">改枪码 (游戏中改枪界面粘贴导入)</div>
+                        <div id="gunModalCodeText" class="font-mono text-tactical-neonGreen font-extrabold text-sm sm:text-base tracking-wide">UZI-666-TAC-01</div>
+                    </div>
+                    <button id="gunModalCopyBtn" onclick="" class="btn-tactical-copy px-4 py-2 rounded text-xs font-bold shrink-0">
+                        复制改枪码
+                    </button>
+                </div>
+
+                <!-- Attachments Grid -->
+                <div class="space-y-2">
+                    <div class="text-white font-tech font-bold flex items-center space-x-2">
+                        <i class="fa-solid fa-screwdriver-wrench text-tactical-neonGreen"></i>
+                        <span>推荐核心配件组装方案</span>
+                    </div>
+                    <div id="gunModalAttachmentsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        <!-- Dynamic Attachment Cards -->
+                    </div>
+                </div>
+
+                <!-- Description & Tactical Usage -->
+                <div class="bg-black/40 p-3 rounded border border-gray-800 space-y-1">
+                    <span class="text-tactical-neonGreen font-bold block text-xs">实战定位与打法指导：</span>
+                    <p id="gunModalDescText" class="text-gray-300 text-xs leading-relaxed">实战打法说明...</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-3 border-t border-gray-800 bg-black/70 flex items-center justify-between">
+                <span class="text-[10px] text-gray-500 font-mono">DELTA FORCE MOBILE & PC GUNSMITH</span>
+                <button onclick="closeGunModal()" class="px-4 py-1.5 bg-gray-800 hover:bg-gray-700 text-white rounded text-xs font-bold transition">
+                    关闭
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-tactical-neonGreen text-black px-4 py-2.5 rounded-md shadow-2xl font-bold text-xs flex items-center space-x-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-base"></i>
+        <span id="toastMsg">已成功复制到剪贴板！</span>
+    </div>
+
+    <script>
+        // Core Database matching screenshot exact map dataset with today & yesterday codes
+        const MAP_DATA = [
+            {
+                id: "az3_nuclear",
+                mapName: "AZ3核电站",
+                code: "0030",
+                yesterdayCode: "8241",
+                keyReq: "纯密码锁",
+                coord: "SECTOR N-3 (AZ3核心区)",
+                desc: "位于AZ3核电站核心反应堆B1走廊西侧防爆门，输入密码进入控制台搜刮高阶电子原件与机密卡片。"
+            },
+            {
+                id: "zero_dam",
+                mapName: "零号大坝",
+                code: "0533",
+                yesterdayCode: "6109",
+                keyReq: "行政主楼防爆门",
+                coord: "SECTOR D-2 (零号大坝行政楼)",
+                desc: "行政楼二楼东侧尽头密码门，开门后内有高级武器箱与保险柜，常有小队卡角架枪需小心。"
+            },
+            {
+                id: "longbow_creek",
+                mapName: "长弓溪谷",
+                code: "0637",
+                yesterdayCode: "1854",
+                keyReq: "荒村地窖密码箱",
+                coord: "SECTOR C-4 (长弓溪谷荒村)",
+                desc: "荒村破屋地下室入口加密锁，搜刮可产出高阶战术配件与护甲包。"
+            },
+            {
+                id: "bakhesh",
+                mapName: "巴克什",
+                code: "0593",
+                yesterdayCode: "9312",
+                keyReq: "皇家旅馆暗门",
+                coord: "SECTOR B-2 (巴克什皇家旅馆)",
+                desc: "皇家旅馆二楼套房衣柜背后隐蔽暗门，需交互输入密码进入隐藏密室。"
+            },
+            {
+                id: "space_base",
+                mapName: "航天基地",
+                code: "0774",
+                yesterdayCode: "4028",
+                keyReq: "核心区三楼黑卡间",
+                coord: "SECTOR S-1 (航天基地核心区)",
+                desc: "航天发射塔主楼三楼密室，输入动态密码可开启高价值黑匣子与金卡包。"
+            },
+            {
+                id: "tide_prison",
+                mapName: "潮汐监狱",
+                code: "0352",
+                yesterdayCode: "7561",
+                keyReq: "地下管道防爆门",
+                coord: "SECTOR P-5 (潮汐监狱B2)",
+                desc: "潮汐监狱地下通风管深处牢房隔间，输入密码开锁以获取特种装备与医药物资。"
+            }
+        ];
+
+        // Gunsmith Weapon Data
+        const GUN_DATA = [
+            {
+                id: "uzi",
+                name: "UZI 冲锋枪",
+                category: "smg",
+                tag: "近战腰射流",
+                code: "UZI-666-TAC-01",
+                desc: "近距离贴脸秒人极致改装，大幅提升腰射散布与开枪移速，巷战和室内拉扯无敌。",
+                attachments: [
+                    { type: "枪口", name: "微型战术消音器" },
+                    { type: "枪管", name: "加长竞技枪管" },
+                    { type: "握把", name: "斜向战术腰射握把" },
+                    { type: "弹匣", name: "32发扩容弹匣" },
+                    { type: "枪托", name: "折叠轻型枪托" },
+                    { type: "激光", name: "蓝芯强光腰射指示器" }
+                ]
+            },
+            {
+                id: "m4a1",
+                name: "M4A1 突击步枪",
+                category: "rifle",
+                tag: "0后座中远激光枪",
+                code: "M4A1-BEAM-DELTA-88",
+                desc: "全能型烽火打金步枪，极致控制垂直与水平后座，中远距离全自动打点如激光般平稳。",
+                attachments: [
+                    { type: "枪口", name: "沙暴补偿器" },
+                    { type: "枪管", name: "长重型防爆枪管" },
+                    { type: "握把", name: "RK-0垂直压枪握把" },
+                    { type: "瞄具", name: "全息红点全景红点" },
+                    { type: "枪托", name: "MFT战术重型托" },
+                    { type: "弹匣", name: "60发聚合物弹鼓" }
+                ]
+            },
+            {
+                id: "mp5",
+                name: "MP5 冲锋枪",
+                category: "smg",
+                tag: "满配高机动走射流",
+                code: "MP5-RUN-GUN-99",
+                desc: "经典高均衡冲锋枪，开镜架枪移速极快，中近距离爆发力强且射击手感极佳。",
+                attachments: [
+                    { type: "枪口", name: "三叉戟制退器" },
+                    { type: "枪管", name: "一体式战术消音枪管" },
+                    { type: "握把", name: "巡逻战术斜握把" },
+                    { type: "弹匣", name: "40发快速双排弹匣" },
+                    { type: "枪托", name: "伸缩轻量化枪托" },
+                    { type: "瞄具", name: "OKP-7微型红点" }
+                ]
+            },
+            {
+                id: "mp6",
+                name: "MP6 冲锋枪",
+                category: "smg",
+                tag: "极速融化高爆流",
+                code: "MP6-BURST-FAST-06",
+                desc: "超高射速秒人利器，近距离配合穿甲弹头可瞬间融化满级护甲敌方玩家。",
+                attachments: [
+                    { type: "枪口", name: "轻型消焰器" },
+                    { type: "枪管", name: "短重型刺杀枪管" },
+                    { type: "握把", name: "骨架透气前握把" },
+                    { type: "弹匣", name: "45发高容量弹匣" },
+                    { type: "激光", name: "绿点战术指示器" },
+                    { type: "枪托", name: "无枪托战术底座" }
+                ]
+            },
+            {
+                id: "tenglong",
+                name: "腾龙 (特战步枪)",
+                category: "rifle",
+                tag: "顶级打金金枪",
+                code: "TENGLONG-GOLD-777",
+                desc: "高单发伤害顶级步枪，腾龙专属战术挂件，远距离精确爆头，撤离摸金必备。",
+                attachments: [
+                    { type: "枪口", name: "腾龙重型消音器" },
+                    { type: "枪管", name: "精密巡航长枪管" },
+                    { type: "握把", name: "黑石垂直压枪握把" },
+                    { type: "瞄具", name: "3倍定倍战术瞄准镜" },
+                    { type: "枪托", name: "精密人体工程学托" },
+                    { type: "弹匣", name: "50发马格南扩容弹匣" }
+                ]
+            },
+            {
+                id: "p90",
+                name: "P90 冲锋枪",
+                category: "smg",
+                tag: "50发大弹匣撕裂者",
+                code: "P90-RAID-MASTER-50",
+                desc: "自带50发顶置大弹匣，弹道极度平稳，多人小队团战无需频繁换弹直接压制。",
+                attachments: [
+                    { type: "枪口", name: "P90专用隐蔽消音器" },
+                    { type: "枪管", name: "扩展拉长枪管" },
+                    { type: "握把", name: "下挂人体工程学指挡" },
+                    { type: "瞄具", name: "一体式战术环形红点" },
+                    { type: "激光", name: "强光战术指示手电" },
+                    { type: "弹匣", name: "50发原装大弹匣" }
+                ]
+            }
+        ];
+
+        let activeTabMode = "passwords";
+        let viewMode = "strip";
+        let currentDateMode = "today";
+        let searchKeyword = "";
+        let gunSearchKeyword = "";
+        let gunFilterCategory = "all";
+
+        function switchTabMode(mode) {
+            activeTabMode = mode;
+            const passBtn = document.getElementById("tabPasswordsBtn");
+            const gunsBtn = document.getElementById("tabGunsBtn");
+            const passSec = document.getElementById("passwordsSection");
+            const gunsSec = document.getElementById("gunsSection");
+
+            if (mode === 'passwords') {
+                passBtn.className = "px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm";
+                gunsBtn.className = "px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm";
+                passSec.classList.remove("hidden");
+                gunsSec.classList.add("hidden");
+                renderList();
+            } else {
+                gunsBtn.className = "px-4 py-1.5 rounded-lg bg-tactical-neonGreen text-black font-extrabold flex items-center space-x-2 transition text-xs sm:text-sm";
+                passBtn.className = "px-4 py-1.5 rounded-lg bg-slate-900 border border-gray-800 text-gray-400 hover:text-tactical-neonGreen font-bold flex items-center space-x-2 transition text-xs sm:text-sm";
+                gunsSec.classList.remove("hidden");
+                passSec.classList.add("hidden");
+                renderGuns();
+            }
+        }
+
+        function switchView(mode) {
+            viewMode = mode;
+            const stripBtn = document.getElementById("viewStripBtn");
+            const cardBtn = document.getElementById("viewCardBtn");
+            if (!stripBtn || !cardBtn) return;
+            if (mode === 'strip') {
+                stripBtn.className = "px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]";
+                cardBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]";
+            } else {
+                cardBtn.className = "px-2.5 py-1 rounded bg-gray-800 text-white font-bold transition flex items-center gap-1 text-[11px]";
+                stripBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-white transition flex items-center gap-1 text-[11px]";
+            }
+            renderList();
+        }
+
+        function handleSearch() {
+            searchKeyword = document.getElementById("searchInput").value;
+            renderList();
+        }
+
+        function handleGunSearch() {
+            gunSearchKeyword = document.getElementById("gunSearchInput").value;
+            renderGuns();
+        }
+
+        function filterGun(cat) {
+            gunFilterCategory = cat;
+            renderGuns();
+        }
+
+        function resetSearch() {
+            if (activeTabMode === 'passwords') {
+                const input = document.getElementById("searchInput");
+                if (input) input.value = "";
+                searchKeyword = "";
+                renderList();
+            } else {
+                const input = document.getElementById("gunSearchInput");
+                if (input) input.value = "";
+                gunSearchKeyword = "";
+                gunFilterCategory = "all";
+                renderGuns();
+            }
+        }
+
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toastMsg");
+            if (!toast || !toastMsg) return;
+            toastMsg.innerText = msg;
+            toast.classList.remove("translate-y-20", "opacity-0", "pointer-events-none");
+            toast.classList.add("translate-y-0", "opacity-100");
+            
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-20", "opacity-0", "pointer-events-none");
+            }, 2500);
+        }
+
+        function setDateMode(mode) {
+            currentDateMode = mode;
+            const todayBtn = document.getElementById("dateTodayBtn");
+            const yesterdayBtn = document.getElementById("dateYesterdayBtn");
+
+            if (mode === 'today') {
+                todayBtn.className = "px-2.5 py-1 rounded text-black bg-tactical-neonGreen font-bold transition flex items-center gap-1 text-[11px]";
+                yesterdayBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-amber-400 transition flex items-center gap-1 text-[11px]";
+            } else {
+                yesterdayBtn.className = "px-2.5 py-1 rounded text-black bg-amber-400 font-bold transition flex items-center gap-1 text-[11px]";
+                todayBtn.className = "px-2.5 py-1 rounded text-gray-400 hover:text-tactical-neonGreen transition flex items-center gap-1 text-[11px]";
+            }
+            renderList();
+        }
+
+        function renderList() {
+            const container = document.getElementById("passwordContainer");
+            const emptyState = document.getElementById("emptyState");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const filtered = MAP_DATA.filter(item => {
+                if (!searchKeyword.trim()) return true;
+                const kw = searchKeyword.toLowerCase().trim();
+                return item.mapName.toLowerCase().includes(kw) || 
+                       item.code.includes(kw) || 
+                       item.yesterdayCode.includes(kw) ||
+                       item.desc.toLowerCase().includes(kw);
+            });
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove("hidden");
+                return;
+            } else {
+                emptyState.classList.add("hidden");
+            }
+
+            const isYesterday = currentDateMode === "yesterday";
+
+            if (viewMode === "strip") {
+                container.className = "space-y-3";
+                filtered.forEach(item => {
+                    const displayCode = isYesterday ? item.yesterdayCode : item.code;
+                    const codeColor = isYesterday ? 'text-amber-400' : 'text-tactical-neonGreen';
+                    const badgeHtml = isYesterday ? '<span class="text-[10px] bg-amber-500/20 border border-amber-500/40 text-amber-400 px-1 py-0.2 rounded font-mono">昨日</span>' : '';
+
+                    const stripHtml = `
+                        <div class="tactical-strip rounded px-4 py-3.5 flex items-center justify-between shadow-md">
+                            <!-- Left Info: View Location Link + Map Name + Code -->
+                            <div class="flex items-center space-x-3 sm:space-x-5 text-sm sm:text-base font-bold">
+                                <button onclick="openMapModal('${item.id}')" class="text-tactical-neonGreen hover:text-white flex items-center space-x-1.5 underline decoration-tactical-neonGreen/50 underline-offset-4 transition group shrink-0">
+                                    <i class="fa-solid fa-location-dot text-sm text-tactical-neonGreen group-hover:scale-110 transition"></i>
+                                    <span class="text-xs sm:text-sm">查看位置</span>
+                                </button>
+                                <div class="flex items-center space-x-2 font-tech">
+                                    <span class="text-white tracking-wide">${item.mapName}:</span>
+                                    <span class="font-mono font-extrabold tracking-widest text-base sm:text-lg ${codeColor}">${displayCode}</span>
+                                    ${badgeHtml}
+                                </div>
+                            </div>
+
+                            <!-- Right Action: Copy Button -->
+                            <button onclick="copyCode('${displayCode}', '${item.mapName}')" 
+                                    class="btn-tactical-copy px-5 py-2 rounded text-xs sm:text-sm font-black flex items-center justify-center shrink-0">
+                                <span>复制</span>
+                            </button>
+                        </div>
+                    `;
+                    container.innerHTML += stripHtml;
+                });
+            } else {
+                container.className = "grid grid-cols-1 sm:grid-cols-2 gap-4 space-y-0";
+                filtered.forEach(item => {
+                    const displayCode = isYesterday ? item.yesterdayCode : item.code;
+                    const codeColor = isYesterday ? 'text-amber-400' : 'text-tactical-neonGreen';
+                    const labelText = isYesterday ? '昨日密码' : '每日破解密码';
+
+                    const cardHtml = `
+                        <div class="bg-tactical-card border border-gray-800 hover:border-tactical-neonGreen/60 rounded-lg p-4 space-y-3 tech-corners transition">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white text-base font-tech">${item.mapName}</span>
+                                <span class="text-[10px] bg-tactical-neonGreen/10 text-tactical-neonGreen border border-tactical-neonGreen/30 px-1.5 py-0.5 rounded">密码门锁</span>
+                            </div>
+                            <div class="bg-black/60 p-3 rounded flex items-center justify-between border border-gray-800">
+                                <span class="text-xs text-gray-400">${labelText}</span>
+                                <span class="font-mono text-2xl font-bold ${codeColor} tracking-widest">${displayCode}</span>
+                            </div>
+                            <p class="text-xs text-gray-400 line-clamp-2">${item.desc}</p>
+                            <div class="pt-2 flex items-center justify-between border-t border-gray-800/80">
+                                <button onclick="openMapModal('${item.id}')" class="text-xs text-tactical-neonGreen hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-map"></i>
+                                    <span>位置详情</span>
+                                </button>
+                                <button onclick="copyCode('${displayCode}', '${item.mapName}')" class="btn-tactical-copy px-4 py-1.5 rounded text-xs">
+                                    复制密码
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += cardHtml;
+                });
+            }
+        }
+
+        function renderGuns() {
+            const container = document.getElementById("gunsmithContainer");
+            const emptyState = document.getElementById("emptyState");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const filtered = GUN_DATA.filter(gun => {
+                if (gunFilterCategory !== 'all' && gun.category !== gunFilterCategory) return false;
+                if (!gunSearchKeyword.trim()) return true;
+                const kw = gunSearchKeyword.toLowerCase().trim();
+                return gun.name.toLowerCase().includes(kw) || 
+                       gun.tag.toLowerCase().includes(kw) ||
+                       gun.code.toLowerCase().includes(kw) ||
+                       gun.attachments.some(a => a.name.toLowerCase().includes(kw));
+            });
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove("hidden");
+                return;
+            } else {
+                emptyState.classList.add("hidden");
+            }
+
+            filtered.forEach(gun => {
+                const cardHtml = `
+                    <div class="bg-tactical-card border border-gray-800 hover:border-tactical-neonGreen/60 rounded-xl p-4 space-y-3 tech-corners transition flex flex-col justify-between">
+                        <!-- Top Gun Info -->
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-bold text-white text-base font-tech">${gun.name}</span>
+                                    <span class="text-[10px] bg-tactical-neonGreen/10 text-tactical-neonGreen border border-tactical-neonGreen/30 px-1.5 py-0.5 rounded font-mono">${gun.tag}</span>
+                                </div>
+                                <button onclick="openGunModal('${gun.id}')" class="text-xs text-tactical-neonGreen hover:underline flex items-center space-x-1">
+                                    <i class="fa-solid fa-list-check"></i>
+                                    <span>详细方案</span>
+                                </button>
+                            </div>
+
+                            <!-- Code Box -->
+                            <div class="bg-black/60 p-2.5 rounded border border-gray-800 flex items-center justify-between font-mono">
+                                <span class="text-[11px] text-gray-400">改枪码:</span>
+                                <span class="text-tactical-neonGreen font-bold text-xs sm:text-sm tracking-wide">${gun.code}</span>
+                            </div>
+
+                            <!-- Attachment Quick Chips -->
+                            <div class="flex flex-wrap gap-1 pt-1">
+                                ${gun.attachments.slice(0, 4).map(att => `<span class="text-[10px] bg-slate-900 border border-gray-800 text-gray-300 px-2 py-0.5 rounded">${att.type}: ${att.name}</span>`).join('')}
+                                ${gun.attachments.length > 4 ? `<span class="text-[10px] text-gray-500 py-0.5">+${gun.attachments.length - 4}更多</span>` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Card Action -->
+                        <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between gap-2">
+                            <button onclick="openGunModal('${gun.id}')" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-white rounded text-xs font-bold transition flex items-center space-x-1">
+                                <i class="fa-solid fa-list-check"></i>
+                                <span>配件清单</span>
+                            </button>
+                            <button onclick="copyGunCode('${gun.code}', '${gun.name}')" class="btn-tactical-copy px-4 py-1.5 rounded text-xs">
+                                复制改枪码
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        function copyGunCode(code, name) {
+            const tempInput = document.createElement("input");
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(`已复制 ${name} 改枪码 [${code}]`);
+        }
+
+        function openGunModal(gunId) {
+            const gun = GUN_DATA.find(g => g.id === gunId);
+            if (!gun) return;
+
+            document.getElementById("gunModalName").innerText = `${gun.name} - 改枪方案`;
+            document.getElementById("gunModalTag").innerText = gun.tag;
+            document.getElementById("gunModalCodeText").innerText = gun.code;
+            document.getElementById("gunModalDescText").innerText = gun.desc;
+            document.getElementById("gunModalCategoryBadge").innerText = gun.category.toUpperCase();
+
+            const grid = document.getElementById("gunModalAttachmentsGrid");
+            grid.innerHTML = "";
+            gun.attachments.forEach(att => {
+                grid.innerHTML += `
+                    <div class="bg-black/50 p-2.5 rounded border border-gray-800/80">
+                        <div class="text-tactical-neonGreen text-[10px] font-mono font-bold">${att.type}</div>
+                        <div class="text-white text-xs font-bold mt-0.5">${att.name}</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("gunModalCopyBtn").onclick = function() {
+                copyGunCode(gun.code, gun.name);
+            };
+
+            document.getElementById("gunModal").classList.remove("hidden");
+        }
+
+        function closeGunModal() {
+            document.getElementById("gunModal").classList.add("hidden");
+        }
+
+        function copyCode(code, mapName) {
+            const tempInput = document.createElement("input");
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(`已复制 ${mapName} 密码 [${code}]`);
+        }
+
+        function copyAllTodayPasswords() {
+            const isYesterday = currentDateMode === "yesterday";
+            let text = `【三角洲行动 ${isYesterday ? '昨日历史密码' : '今日最新破译密码'}】\n`;
+            MAP_DATA.forEach(item => {
+                const code = isYesterday ? item.yesterdayCode : item.code;
+                text += `${item.mapName}: ${code}\n`;
+            });
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(`已一键复制${isYesterday ? '昨日' : '今日'}全部地图密码！`);
+        }
+
+        function openMapModal(itemId) {
+            const item = MAP_DATA.find(i => i.id === itemId);
+            if (!item) return;
+
+            document.getElementById("modalTitle").innerText = `${item.mapName} - 点位简述`;
+            document.getElementById("modalCodeDisplay").innerText = item.code;
+            document.getElementById("modalPrevCodeDisplay").innerText = item.yesterdayCode;
+            document.getElementById("modalKeyReq").innerText = item.keyReq;
+            document.getElementById("modalRouteText").innerText = item.desc;
+            document.getElementById("modalCoordinates").innerText = item.coord;
+
+            document.getElementById("mapModal").classList.remove("hidden");
+        }
+
+        function closeMapModal() {
+            document.getElementById("mapModal").classList.add("hidden");
+        }
+
+        // Live Countdown Clock Timer
+        function startTimer() {
+            function update() {
+                const now = new Date();
+                const nextReset = new Date();
+                nextReset.setHours(24, 0, 0, 0);
+
+                const diff = nextReset - now;
+                const hours = Math.floor(diff / (1000 * 60 * 60)).toString().padStart(2, '0');
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                const secs = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+                document.getElementById("resetTimer").innerText = `${hours}:${mins}:${secs}`;
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        window.onload = function() {
+            startTimer();
+            renderList();
+        };
+    </script>
+</body>
+</html>
