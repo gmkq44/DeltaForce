@@ -178,6 +178,12 @@
 
         <!-- Passwords Section Container -->
         <div id="passwordsSection" class="space-y-4">
+            <!-- Mobile Reset Countdown -->
+            <div class="sm:hidden flex items-center justify-between bg-black/40 px-3 py-2 rounded-lg border border-gray-800 text-xs">
+                <span class="text-gray-400"><i class="fa-solid fa-clock text-tactical-neonGreen mr-1.5"></i>距离密码刷新</span>
+                <span id="resetTimerMobile" class="text-tactical-neonGreen font-mono font-bold tracking-wider">00:00:00</span>
+            </div>
+
             <!-- Filter & Controls Toolbar -->
             <div class="bg-black/40 p-3 rounded-lg border border-gray-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <!-- Search Box -->
@@ -801,16 +807,17 @@
         // Live Countdown Clock Timer
         function startTimer() {
             function update() {
-                const now = new Date();
-                const nextReset = new Date();
-                nextReset.setHours(24, 0, 0, 0);
-
-                const diff = nextReset - now;
+                // Passwords reset at 00:00 Beijing time (UTC+8), regardless of device timezone
+                const day = 24 * 60 * 60 * 1000;
+                const cst = Date.now() + 8 * 60 * 60 * 1000;
+                const diff = day - (cst % day);
                 const hours = Math.floor(diff / (1000 * 60 * 60)).toString().padStart(2, '0');
                 const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
                 const secs = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
-                document.getElementById("resetTimer").innerText = `${hours}:${mins}:${secs}`;
+                const text = `${hours}:${mins}:${secs}`;
+                document.getElementById("resetTimer").innerText = text;
+                document.getElementById("resetTimerMobile").innerText = text;
             }
             update();
             setInterval(update, 1000);
