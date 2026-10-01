@@ -1,12 +1,9 @@
-name: Update daily passwords
+name: Update gun build codes
 
 on:
   schedule:
-    # 00:05, 00:35, 06:05, 12:05 Beijing time (UTC+8)
-    - cron: "5 16 * * *"
-    - cron: "35 16 * * *"
-    - cron: "5 22 * * *"
-    - cron: "5 4 * * *"
+    # Mondays 06:07 Beijing time (UTC+8)
+    - cron: "7 22 * * 0"
   workflow_dispatch:
 
 permissions:
@@ -24,13 +21,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python scripts/update_passwords.py
-      - name: Commit data.json
+      - run: python scripts/update_guns.py
+      - name: Commit guns.json
         run: |
-          git add data.json
+          git add guns.json
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898828+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update daily passwords $(TZ=Asia/Shanghai date +%F)"
+          git commit -m "Update gun build codes $(TZ=Asia/Shanghai date +%F)"
           git pull --rebase
           git push

@@ -231,7 +231,7 @@
             <div class="bg-black/40 p-3 rounded-lg border border-gray-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div class="relative flex-grow max-w-md">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
-                    <input type="text" id="gunSearchInput" oninput="handleGunSearch()" placeholder="搜索枪械名称或配件类型 (如: UZI, M4A1, 腾龙, 无后座...)" 
+                    <input type="text" id="gunSearchInput" oninput="handleGunSearch()" placeholder="搜索枪械或方案 (如: M4A1, 腾龙, 腰射, 满改...)" 
                            class="w-full bg-slate-900 border border-gray-800 rounded-md pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-tactical-neonGreen transition">
                 </div>
                 <div class="flex items-center space-x-1.5 text-xs">
@@ -239,6 +239,8 @@
                     <button onclick="filterGun('all')" class="px-2.5 py-1 bg-tactical-neonGreen/20 text-tactical-neonGreen border border-tactical-neonGreen/40 rounded hover:bg-tactical-neonGreen hover:text-black font-bold transition text-[11px]">全部</button>
                     <button onclick="filterGun('smg')" class="px-2.5 py-1 bg-slate-800 text-gray-300 border border-gray-700 rounded hover:text-white transition text-[11px]">冲锋枪</button>
                     <button onclick="filterGun('rifle')" class="px-2.5 py-1 bg-slate-800 text-gray-300 border border-gray-700 rounded hover:text-white transition text-[11px]">步枪</button>
+                    <button onclick="filterGun('marksman')" class="px-2.5 py-1 bg-slate-800 text-gray-300 border border-gray-700 rounded hover:text-white transition text-[11px]">射手</button>
+                    <button onclick="filterGun('sniper')" class="px-2.5 py-1 bg-slate-800 text-gray-300 border border-gray-700 rounded hover:text-white transition text-[11px]">狙击</button>
                 </div>
             </div>
 
@@ -257,7 +259,7 @@
 
         <!-- Bottom Notice -->
         <div class="bg-black/40 border border-gray-800/80 rounded-lg p-3 text-center text-xs text-gray-400 space-y-1">
-            <p><i class="fa-solid fa-shield-halved text-tactical-neonGreen mr-1"></i>密码每日 00:00 后自动更新<span id="dataUpdated"></span>。改枪码支持在【三角洲行动-改枪界面】直接复制导入。</p>
+            <p><i class="fa-solid fa-shield-halved text-tactical-neonGreen mr-1"></i>密码每日 00:00 后自动更新<span id="dataUpdated"></span>。改枪码每周从社区收录更新，在游戏【改装 → 方案导入】粘贴即可。</p>
         </div>
     </main>
 
@@ -349,29 +351,37 @@
                 <div class="bg-black/50 p-3 rounded-lg border border-gray-800 flex items-center justify-between">
                     <div>
                         <div class="text-gray-400 text-[10px]">改枪码 (游戏中改枪界面粘贴导入)</div>
-                        <div id="gunModalCodeText" class="font-mono text-tactical-neonGreen font-extrabold text-sm sm:text-base tracking-wide">UZI-666-TAC-01</div>
+                        <div id="gunModalCodeText" class="font-mono text-tactical-neonGreen font-extrabold text-xs sm:text-sm tracking-wide break-all">--</div>
                     </div>
                     <button id="gunModalCopyBtn" onclick="" class="btn-tactical-copy px-4 py-2 rounded text-xs font-bold shrink-0">
                         复制改枪码
                     </button>
                 </div>
 
-                <!-- Attachments Grid -->
-                <div class="space-y-2">
-                    <div class="text-white font-tech font-bold flex items-center space-x-2">
-                        <i class="fa-solid fa-screwdriver-wrench text-tactical-neonGreen"></i>
-                        <span>推荐核心配件组装方案</span>
+                <!-- Build Info -->
+                <div class="grid grid-cols-3 gap-2 font-mono">
+                    <div class="bg-black/50 p-2.5 rounded border border-gray-800">
+                        <div class="text-gray-500 text-[10px]">模式</div>
+                        <div id="gunModalMode" class="font-bold text-gray-200 text-xs mt-1">烽火地带</div>
                     </div>
-                    <div id="gunModalAttachmentsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        <!-- Dynamic Attachment Cards -->
+                    <div class="bg-black/50 p-2.5 rounded border border-gray-800">
+                        <div class="text-gray-500 text-[10px]">参考价值</div>
+                        <div id="gunModalPrice" class="font-bold text-amber-400 text-xs mt-1">--</div>
+                    </div>
+                    <div class="bg-black/50 p-2.5 rounded border border-gray-800">
+                        <div class="text-gray-500 text-[10px]">收录日期</div>
+                        <div id="gunModalDate" class="font-bold text-gray-200 text-xs mt-1">--</div>
                     </div>
                 </div>
 
-                <!-- Description & Tactical Usage -->
                 <div class="bg-black/40 p-3 rounded border border-gray-800 space-y-1">
-                    <span class="text-tactical-neonGreen font-bold block text-xs">实战定位与打法指导：</span>
-                    <p id="gunModalDescText" class="text-gray-300 text-xs leading-relaxed">实战打法说明...</p>
+                    <span class="text-tactical-neonGreen font-bold block text-xs">方案说明：</span>
+                    <p id="gunModalDescText" class="text-gray-300 text-xs leading-relaxed">--</p>
                 </div>
+
+                <!-- Attachment Screenshot -->
+                <div id="gunModalImage"></div>
+                <a id="gunModalSource" href="#" target="_blank" rel="noopener" class="block text-[11px] text-gray-500 hover:text-tactical-neonGreen">数据来源：g.aitags.cn 社区改枪码</a>
             </div>
 
             <!-- Footer -->
@@ -449,105 +459,9 @@
             }
         ];
 
-        // Gunsmith Weapon Data
-        const GUN_DATA = [
-            {
-                id: "uzi",
-                name: "UZI 冲锋枪",
-                category: "smg",
-                tag: "近战腰射流",
-                code: "UZI-666-TAC-01",
-                desc: "近距离贴脸秒人极致改装，大幅提升腰射散布与开枪移速，巷战和室内拉扯无敌。",
-                attachments: [
-                    { type: "枪口", name: "微型战术消音器" },
-                    { type: "枪管", name: "加长竞技枪管" },
-                    { type: "握把", name: "斜向战术腰射握把" },
-                    { type: "弹匣", name: "32发扩容弹匣" },
-                    { type: "枪托", name: "折叠轻型枪托" },
-                    { type: "激光", name: "蓝芯强光腰射指示器" }
-                ]
-            },
-            {
-                id: "m4a1",
-                name: "M4A1 突击步枪",
-                category: "rifle",
-                tag: "0后座中远激光枪",
-                code: "M4A1-BEAM-DELTA-88",
-                desc: "全能型烽火打金步枪，极致控制垂直与水平后座，中远距离全自动打点如激光般平稳。",
-                attachments: [
-                    { type: "枪口", name: "沙暴补偿器" },
-                    { type: "枪管", name: "长重型防爆枪管" },
-                    { type: "握把", name: "RK-0垂直压枪握把" },
-                    { type: "瞄具", name: "全息红点全景红点" },
-                    { type: "枪托", name: "MFT战术重型托" },
-                    { type: "弹匣", name: "60发聚合物弹鼓" }
-                ]
-            },
-            {
-                id: "mp5",
-                name: "MP5 冲锋枪",
-                category: "smg",
-                tag: "满配高机动走射流",
-                code: "MP5-RUN-GUN-99",
-                desc: "经典高均衡冲锋枪，开镜架枪移速极快，中近距离爆发力强且射击手感极佳。",
-                attachments: [
-                    { type: "枪口", name: "三叉戟制退器" },
-                    { type: "枪管", name: "一体式战术消音枪管" },
-                    { type: "握把", name: "巡逻战术斜握把" },
-                    { type: "弹匣", name: "40发快速双排弹匣" },
-                    { type: "枪托", name: "伸缩轻量化枪托" },
-                    { type: "瞄具", name: "OKP-7微型红点" }
-                ]
-            },
-            {
-                id: "mp6",
-                name: "MP6 冲锋枪",
-                category: "smg",
-                tag: "极速融化高爆流",
-                code: "MP6-BURST-FAST-06",
-                desc: "超高射速秒人利器，近距离配合穿甲弹头可瞬间融化满级护甲敌方玩家。",
-                attachments: [
-                    { type: "枪口", name: "轻型消焰器" },
-                    { type: "枪管", name: "短重型刺杀枪管" },
-                    { type: "握把", name: "骨架透气前握把" },
-                    { type: "弹匣", name: "45发高容量弹匣" },
-                    { type: "激光", name: "绿点战术指示器" },
-                    { type: "枪托", name: "无枪托战术底座" }
-                ]
-            },
-            {
-                id: "tenglong",
-                name: "腾龙 (特战步枪)",
-                category: "rifle",
-                tag: "顶级打金金枪",
-                code: "TENGLONG-GOLD-777",
-                desc: "高单发伤害顶级步枪，腾龙专属战术挂件，远距离精确爆头，撤离摸金必备。",
-                attachments: [
-                    { type: "枪口", name: "腾龙重型消音器" },
-                    { type: "枪管", name: "精密巡航长枪管" },
-                    { type: "握把", name: "黑石垂直压枪握把" },
-                    { type: "瞄具", name: "3倍定倍战术瞄准镜" },
-                    { type: "枪托", name: "精密人体工程学托" },
-                    { type: "弹匣", name: "50发马格南扩容弹匣" }
-                ]
-            },
-            {
-                id: "p90",
-                name: "P90 冲锋枪",
-                category: "smg",
-                tag: "50发大弹匣撕裂者",
-                code: "P90-RAID-MASTER-50",
-                desc: "自带50发顶置大弹匣，弹道极度平稳，多人小队团战无需频繁换弹直接压制。",
-                attachments: [
-                    { type: "枪口", name: "P90专用隐蔽消音器" },
-                    { type: "枪管", name: "扩展拉长枪管" },
-                    { type: "握把", name: "下挂人体工程学指挡" },
-                    { type: "瞄具", name: "一体式战术环形红点" },
-                    { type: "激光", name: "强光战术指示手电" },
-                    { type: "弹匣", name: "50发原装大弹匣" }
-                ]
-            }
-        ];
+        // Gunsmith builds, loaded from guns.json (refreshed weekly by GitHub Actions)
+        let GUN_DATA = [];
+        const GUN_CATEGORY_LABEL = { rifle: "步枪", smg: "冲锋枪", marksman: "射手步枪", sniper: "狙击步枪" };
 
         let activeTabMode = "passwords";
         let viewMode = "strip";
@@ -753,10 +667,7 @@
                 if (gunFilterCategory !== 'all' && gun.category !== gunFilterCategory) return false;
                 if (!gunSearchKeyword.trim()) return true;
                 const kw = gunSearchKeyword.toLowerCase().trim();
-                return gun.name.toLowerCase().includes(kw) || 
-                       gun.tag.toLowerCase().includes(kw) ||
-                       gun.code.toLowerCase().includes(kw) ||
-                       gun.attachments.some(a => a.name.toLowerCase().includes(kw));
+                return [gun.name, gun.desc, gun.code, gun.mode, gun.price].some(v => (v || "").toLowerCase().includes(kw));
             });
 
             if (filtered.length === 0) {
@@ -769,38 +680,25 @@
             filtered.forEach(gun => {
                 const cardHtml = `
                     <div class="bg-tactical-card border border-gray-800 hover:border-tactical-neonGreen/60 rounded-xl p-4 space-y-3 tech-corners transition flex flex-col justify-between">
-                        <!-- Top Gun Info -->
                         <div class="space-y-2.5">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-2">
+                            <div class="flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2 min-w-0 flex-wrap">
                                     <span class="font-bold text-white text-base font-tech">${gun.name}</span>
-                                    <span class="text-[10px] bg-tactical-neonGreen/10 text-tactical-neonGreen border border-tactical-neonGreen/30 px-1.5 py-0.5 rounded font-mono">${gun.tag}</span>
+                                    ${gun.price ? `<span class="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/30 px-1.5 py-0.5 rounded font-mono">${gun.price}</span>` : ''}
+                                    <span class="text-[10px] bg-tactical-neonGreen/10 text-tactical-neonGreen border border-tactical-neonGreen/30 px-1.5 py-0.5 rounded">${gun.mode}</span>
                                 </div>
-                                <button onclick="openGunModal('${gun.id}')" class="text-xs text-tactical-neonGreen hover:underline flex items-center space-x-1">
-                                    <i class="fa-solid fa-list-check"></i>
-                                    <span>详细方案</span>
+                                <button onclick="openGunModal('${gun.id}')" class="shrink-0 text-xs text-tactical-neonGreen hover:underline flex items-center space-x-1">
+                                    <i class="fa-solid fa-image"></i>
+                                    <span>配件图</span>
                                 </button>
                             </div>
-
-                            <!-- Code Box -->
-                            <div class="bg-black/60 p-2.5 rounded border border-gray-800 flex items-center justify-between font-mono">
-                                <span class="text-[11px] text-gray-400">改枪码:</span>
-                                <span class="text-tactical-neonGreen font-bold text-xs sm:text-sm tracking-wide">${gun.code}</span>
-                            </div>
-
-                            <!-- Attachment Quick Chips -->
-                            <div class="flex flex-wrap gap-1 pt-1">
-                                ${gun.attachments.slice(0, 4).map(att => `<span class="text-[10px] bg-slate-900 border border-gray-800 text-gray-300 px-2 py-0.5 rounded">${att.type}: ${att.name}</span>`).join('')}
-                                ${gun.attachments.length > 4 ? `<span class="text-[10px] text-gray-500 py-0.5">+${gun.attachments.length - 4}更多</span>` : ''}
+                            <p class="text-xs text-gray-400">${gun.desc || GUN_CATEGORY_LABEL[gun.category] || ''}</p>
+                            <div class="bg-black/60 p-2.5 rounded border border-gray-800 font-mono break-all">
+                                <span class="text-tactical-neonGreen font-bold text-xs tracking-wide">${gun.code}</span>
                             </div>
                         </div>
-
-                        <!-- Card Action -->
                         <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between gap-2">
-                            <button onclick="openGunModal('${gun.id}')" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-white rounded text-xs font-bold transition flex items-center space-x-1">
-                                <i class="fa-solid fa-list-check"></i>
-                                <span>配件清单</span>
-                            </button>
+                            <span class="text-[10px] text-gray-500 font-mono">${gun.date ? '收录 ' + gun.date : ''}</span>
                             <button onclick="copyGunCode('${gun.code}', '${gun.name}')" class="btn-tactical-copy px-4 py-1.5 rounded text-xs">
                                 复制改枪码
                             </button>
@@ -819,7 +717,7 @@
             document.execCommand("copy");
             document.body.removeChild(tempInput);
 
-            showToast(`已复制 ${name} 改枪码 [${code}]`);
+            showToast(`已复制 ${name} 改枪码`);
         }
 
         function openGunModal(gunId) {
@@ -827,21 +725,17 @@
             if (!gun) return;
 
             document.getElementById("gunModalName").innerText = `${gun.name} - 改枪方案`;
-            document.getElementById("gunModalTag").innerText = gun.tag;
+            document.getElementById("gunModalTag").innerText = gun.desc || gun.mode;
             document.getElementById("gunModalCodeText").innerText = gun.code;
-            document.getElementById("gunModalDescText").innerText = gun.desc;
-            document.getElementById("gunModalCategoryBadge").innerText = gun.category.toUpperCase();
-
-            const grid = document.getElementById("gunModalAttachmentsGrid");
-            grid.innerHTML = "";
-            gun.attachments.forEach(att => {
-                grid.innerHTML += `
-                    <div class="bg-black/50 p-2.5 rounded border border-gray-800/80">
-                        <div class="text-tactical-neonGreen text-[10px] font-mono font-bold">${att.type}</div>
-                        <div class="text-white text-xs font-bold mt-0.5">${att.name}</div>
-                    </div>
-                `;
-            });
+            document.getElementById("gunModalCategoryBadge").innerText = GUN_CATEGORY_LABEL[gun.category] || gun.category;
+            document.getElementById("gunModalMode").innerText = gun.mode;
+            document.getElementById("gunModalPrice").innerText = gun.price || "--";
+            document.getElementById("gunModalDate").innerText = gun.date || "--";
+            document.getElementById("gunModalDescText").innerText = gun.desc || "暂无说明";
+            document.getElementById("gunModalImage").innerHTML = gun.image
+                ? `<a href="${gun.image}" target="_blank" rel="noopener noreferrer"><img src="${gun.image}" referrerpolicy="no-referrer" loading="lazy" alt="${gun.name} 配件图" class="w-full rounded border border-gray-800"></a>`
+                : '<p class="text-xs text-gray-500">暂无配件图</p>';
+            document.getElementById("gunModalSource").href = gun.source || "https://g.aitags.cn/delta-force-code";
 
             document.getElementById("gunModalCopyBtn").onclick = function() {
                 copyGunCode(gun.code, gun.name);
@@ -936,10 +830,22 @@
             } catch (e) { /* offline or missing: keep built-in data */ }
         }
 
+        async function loadGunData() {
+            try {
+                const res = await fetch(`guns.json?t=${Date.now()}`, { cache: "no-store" });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data.guns)) return;
+                GUN_DATA = data.guns;
+                if (activeTabMode === "guns") renderGuns();
+            } catch (e) { /* offline: service worker may still serve a cached copy */ }
+        }
+
         window.onload = function() {
             startTimer();
             renderList();
             loadPasswordData();
+            loadGunData();
         };
 
         if ('serviceWorker' in navigator) {
