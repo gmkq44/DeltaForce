@@ -1,22 +1,22 @@
 {
-  "date": "2026-10-02",
-  "updatedAt": "2026-10-02T04:52:11+08:00",
+  "date": "2026-10-03",
+  "updatedAt": "2026-10-03T04:27:04+08:00",
   "source": "tmini",
   "maps": [
     {
       "mapName": "AZ3核电站",
-      "code": "0700",
+      "code": "6652",
       "desc": "抵达海水处理区西侧独栋玻璃房间 输入AZ3的今日密码即可打开。",
       "images": [
         "https://img.71acg.net/sykb~bbs/pc/1782972821603231",
         "https://img.71acg.net/sykb~bbs/pc/1782972916830854"
       ],
       "id": "az3_nuclear",
-      "yesterdayCode": "5305"
+      "yesterdayCode": "0700"
     },
     {
       "mapName": "零号大坝",
-      "code": "2581",
+      "code": "4046",
       "desc": "在主变电站与游客中心之间，有隐藏的地下入口。 从上图位置下去，进入管道后趴下匍匐即可看到隐藏密码门， 输入零号大坝的今日密码即可打开。",
       "images": [
         "https://img.71acg.net/sykb~bbs/pc/1740704856747494",
@@ -24,50 +24,50 @@
         "https://img.71acg.net/sykb~bbs/pc/1740731365039849"
       ],
       "id": "zero_dam",
-      "yesterdayCode": "6290"
+      "yesterdayCode": "2581"
     },
     {
       "mapName": "长弓溪谷",
-      "code": "2715",
+      "code": "4983",
       "desc": "在地图右下角荒废村庄下面，同时也是右侧丢包撤离点附近，具体位置如下图 · 有一个明显的地下阶梯，进去就是： 从上图位置下去，即可看到隐藏密码门，输入长弓溪谷的今日密码即可打开。",
       "images": [
         "https://img.71acg.net/sykb~bbs/pc/1740731429260819",
         "https://img.71acg.net/sykb~bbs/pc/1740704856871935"
       ],
       "id": "longbow_creek",
-      "yesterdayCode": "6852"
+      "yesterdayCode": "2715"
     },
     {
       "mapName": "巴克什",
-      "code": "8382",
+      "code": "2417",
       "desc": "在地图地图上方老浴场，也在丢包撤离点附近，具体位置如下图 · 在老浴场一楼，外面这一栋房间里面，进去即可看到密码房：",
       "images": [
         "https://img.71acg.net/sykb~bbs/pc/1740704856764531",
         "https://img.71acg.net/sykb~bbs/pc/1740704856746247"
       ],
       "id": "bakhesh",
-      "yesterdayCode": "9141"
+      "yesterdayCode": "8382"
     },
     {
       "mapName": "航天基地",
-      "code": "2457",
+      "code": "0713",
       "desc": "该密码房固定刷在牢二复活点，即地图右侧组装室二楼 · 地上和桌上可能会刷卫星锅：",
       "images": [
         "https://img.71acg.net/sykb~bbs/pc/1740704856703640",
         "https://img.71acg.net/sykb~bbs/pc/1740725350295327"
       ],
       "id": "space_base",
-      "yesterdayCode": "1778"
+      "yesterdayCode": "2457"
     },
     {
       "mapName": "潮汐监狱",
-      "code": "8517",
+      "code": "2887",
       "desc": "监狱行政区1楼大厅楼梯拐角处",
       "images": [
         "https://img.71acg.net/sykb~bbs/pc/1751616654364471"
       ],
       "id": "tide_prison",
-      "yesterdayCode": "9758"
+      "yesterdayCode": "8517"
     }
   ]
 }
