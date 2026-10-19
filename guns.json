@@ -1,22 +1,9 @@
 {
-  "updatedAt": "2026-10-12T09:16:02+08:00",
+  "updatedAt": "2026-10-19T08:10:40+08:00",
   "source": "g.aitags.cn",
   "guns": [
     {
       "id": "m4a1-1",
-      "name": "M4A1 突击步枪",
-      "category": "rifle",
-      "source": "https://g.aitags.cn/weapons/m4a1",
-      "code": "M4A1突击步枪-烽火地带-6KMR35O0D5CAO5P69F1K0",
-      "mode": "烽火地带",
-      "desc": "3.5倍",
-      "price": "29W",
-      "date": "2026-08-04",
-      "copies": 1859,
-      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-217.webp"
-    },
-    {
-      "id": "m4a1-2",
       "name": "M4A1 突击步枪",
       "category": "rifle",
       "source": "https://g.aitags.cn/weapons/m4a1",
@@ -25,8 +12,21 @@
       "desc": "急停腰射",
       "price": "28W",
       "date": "2026-08-04",
-      "copies": 1835,
+      "copies": 2115,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-259.webp"
+    },
+    {
+      "id": "m4a1-2",
+      "name": "M4A1 突击步枪",
+      "category": "rifle",
+      "source": "https://g.aitags.cn/weapons/m4a1",
+      "code": "M4A1突击步枪-烽火地带-6KMR35O0D5CAO5P69F1K0",
+      "mode": "烽火地带",
+      "desc": "3.5倍",
+      "price": "29W",
+      "date": "2026-08-04",
+      "copies": 2040,
+      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-217.webp"
     },
     {
       "id": "m4a1-3",
@@ -38,7 +38,7 @@
       "desc": "",
       "price": "20W",
       "date": "2026-08-04",
-      "copies": 1692,
+      "copies": 1824,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-184.webp"
     },
     {
@@ -51,7 +51,7 @@
       "desc": "高配",
       "price": "49W",
       "date": "2026-07-17",
-      "copies": 40364,
+      "copies": 40813,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-73.webp"
     },
     {
@@ -64,7 +64,7 @@
       "desc": "",
       "price": "18W",
       "date": "2026-07-17",
-      "copies": 22819,
+      "copies": 23003,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-147.webp"
     },
     {
@@ -77,7 +77,7 @@
       "desc": "45发·满改",
       "price": "53W",
       "date": "2026-07-17",
-      "copies": 20925,
+      "copies": 21234,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-74.webp"
     },
     {
@@ -90,7 +90,7 @@
       "desc": "",
       "price": "26W",
       "date": "2026-07-17",
-      "copies": 39033,
+      "copies": 39281,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-4.webp"
     },
     {
@@ -103,7 +103,7 @@
       "desc": "低配",
       "price": "18W",
       "date": "2026-07-17",
-      "copies": 32129,
+      "copies": 32209,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-3.webp"
     },
     {
@@ -116,7 +116,7 @@
       "desc": "满改·45发",
       "price": "45W",
       "date": "2026-07-17",
-      "copies": 28900,
+      "copies": 29156,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-9.webp"
     },
     {
@@ -129,7 +129,7 @@
       "desc": "",
       "price": "43W",
       "date": "2026-08-13",
-      "copies": 1047,
+      "copies": 1127,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-263.webp"
     },
     {
@@ -142,7 +142,7 @@
       "desc": "腰射AK·消音",
       "price": "22W",
       "date": "2026-07-17",
-      "copies": 44972,
+      "copies": 45694,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-197.webp"
     },
     {
@@ -155,7 +155,7 @@
       "desc": "性价比",
       "price": "27W",
       "date": "2026-07-17",
-      "copies": 14311,
+      "copies": 14511,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-199.webp"
     },
     {
@@ -168,7 +168,7 @@
       "desc": "",
       "price": "25W",
       "date": "2026-09-26",
-      "copies": 224,
+      "copies": 321,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-237.webp"
     },
     {
@@ -181,7 +181,7 @@
       "desc": "中配",
       "price": "25W",
       "date": "2026-07-17",
-      "copies": 28915,
+      "copies": 29239,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-239.webp"
     },
     {
@@ -194,7 +194,7 @@
       "desc": "低配",
       "price": "15W",
       "date": "2026-07-17",
-      "copies": 27448,
+      "copies": 27640,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-235.webp"
     },
     {
@@ -207,7 +207,7 @@
       "desc": "集成3倍镜",
       "price": "21W",
       "date": "2026-07-17",
-      "copies": 52260,
+      "copies": 52633,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-62.webp"
     },
     {
@@ -220,7 +220,7 @@
       "desc": "消音·集成3倍镜·激...",
       "price": "25W",
       "date": "2026-07-17",
-      "copies": 33414,
+      "copies": 33857,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-72.webp"
     },
     {
@@ -233,7 +233,7 @@
       "desc": "红点三倍切换 可近可...",
       "price": "25W",
       "date": "2026-07-17",
-      "copies": 25448,
+      "copies": 25665,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-65.webp"
     },
     {
@@ -246,7 +246,7 @@
       "desc": "100腰射",
       "price": "9W",
       "date": "2026-07-17",
-      "copies": 43500,
+      "copies": 43686,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-137.webp"
     },
     {
@@ -259,7 +259,7 @@
       "desc": "",
       "price": "11W",
       "date": "2026-07-17",
-      "copies": 3456,
+      "copies": 3482,
       "image": null
     },
     {
@@ -272,7 +272,7 @@
       "desc": "静步快",
       "price": "12W",
       "date": "2026-07-17",
-      "copies": 2412,
+      "copies": 2454,
       "image": null
     },
     {
@@ -285,7 +285,7 @@
       "desc": "高腰射 均衡",
       "price": "38W",
       "date": "2026-07-17",
-      "copies": 20978,
+      "copies": 21105,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-172.webp"
     },
     {
@@ -298,7 +298,7 @@
       "desc": "92腰射·60发",
       "price": "33W",
       "date": "2026-07-17",
-      "copies": 13484,
+      "copies": 13658,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-21.webp"
     },
     {
@@ -311,7 +311,7 @@
       "desc": "腰射大弹鼓",
       "price": "",
       "date": "2026-07-17",
-      "copies": 7113,
+      "copies": 7125,
       "image": null
     },
     {
@@ -324,7 +324,7 @@
       "desc": "",
       "price": "26W",
       "date": "2026-09-03",
-      "copies": 183,
+      "copies": 239,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-50.webp"
     },
     {
@@ -337,7 +337,7 @@
       "desc": "低配",
       "price": "16W",
       "date": "2026-07-17",
-      "copies": 17938,
+      "copies": 18141,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-143.webp"
     },
     {
@@ -350,7 +350,7 @@
       "desc": "增高架+红外",
       "price": "28W",
       "date": "2026-07-17",
-      "copies": 10001,
+      "copies": 10219,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-145.webp"
     },
     {
@@ -363,7 +363,7 @@
       "desc": "",
       "price": "11W",
       "date": "2026-08-26",
-      "copies": 386,
+      "copies": 420,
       "image": "https://playerhub.df.qq.com/playerhub/60004/260316/d583758c-93a7-4fd5-a1cf-529a0b932a59.png"
     },
     {
@@ -376,7 +376,7 @@
       "desc": "卡战备必备",
       "price": "6W",
       "date": "2026-07-17",
-      "copies": 19897,
+      "copies": 19971,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-46.webp"
     },
     {
@@ -389,7 +389,7 @@
       "desc": "低倍镜",
       "price": "9W",
       "date": "2026-07-17",
-      "copies": 11407,
+      "copies": 11461,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-156.webp"
     },
     {
@@ -402,7 +402,7 @@
       "desc": "低配",
       "price": "20W",
       "date": "2026-07-17",
-      "copies": 25296,
+      "copies": 25398,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-150.webp"
     },
     {
@@ -415,7 +415,7 @@
       "desc": "84腰射 40发",
       "price": "34W",
       "date": "2026-07-17",
-      "copies": 21272,
+      "copies": 21406,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-152.webp"
     },
     {
@@ -428,7 +428,7 @@
       "desc": "长剑 40发",
       "price": "39W",
       "date": "2026-07-17",
-      "copies": 13288,
+      "copies": 13369,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-153.webp"
     },
     {
@@ -441,7 +441,7 @@
       "desc": "3/7倍镜",
       "price": "48W",
       "date": "2026-07-17",
-      "copies": 57855,
+      "copies": 58518,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-106.webp"
     },
     {
@@ -454,7 +454,7 @@
       "desc": "开镜快",
       "price": "61W",
       "date": "2026-07-17",
-      "copies": 13582,
+      "copies": 13915,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-107.webp"
     },
     {
@@ -467,7 +467,7 @@
       "desc": "3/7 弹道计算",
       "price": "70W",
       "date": "2026-07-17",
-      "copies": 12838,
+      "copies": 13194,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-108.webp"
     },
     {
@@ -480,7 +480,7 @@
       "desc": "3/7倍镜",
       "price": "50W",
       "date": "2026-07-17",
-      "copies": 28433,
+      "copies": 28741,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-98.webp"
     },
     {
@@ -493,7 +493,7 @@
       "desc": "6/12 弹道计算",
       "price": "",
       "date": "2026-07-17",
-      "copies": 10519,
+      "copies": 10564,
       "image": null
     },
     {
@@ -506,7 +506,7 @@
       "desc": "8倍镜",
       "price": "47W",
       "date": "2026-07-17",
-      "copies": 3945,
+      "copies": 3994,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-97.webp"
     }
   ]
