@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T08:10:40+08:00",
+  "updatedAt": "2026-10-26T08:14:04+08:00",
   "source": "g.aitags.cn",
   "guns": [
     {
@@ -12,7 +12,7 @@
       "desc": "急停腰射",
       "price": "28W",
       "date": "2026-08-04",
-      "copies": 2115,
+      "copies": 2325,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-259.webp"
     },
     {
@@ -25,7 +25,7 @@
       "desc": "3.5倍",
       "price": "29W",
       "date": "2026-08-04",
-      "copies": 2040,
+      "copies": 2216,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-217.webp"
     },
     {
@@ -38,7 +38,7 @@
       "desc": "",
       "price": "20W",
       "date": "2026-08-04",
-      "copies": 1824,
+      "copies": 1962,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-184.webp"
     },
     {
@@ -51,7 +51,7 @@
       "desc": "高配",
       "price": "49W",
       "date": "2026-07-17",
-      "copies": 40813,
+      "copies": 41121,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-73.webp"
     },
     {
@@ -64,7 +64,7 @@
       "desc": "",
       "price": "18W",
       "date": "2026-07-17",
-      "copies": 23003,
+      "copies": 23162,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-147.webp"
     },
     {
@@ -77,7 +77,7 @@
       "desc": "45发·满改",
       "price": "53W",
       "date": "2026-07-17",
-      "copies": 21234,
+      "copies": 21422,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-74.webp"
     },
     {
@@ -90,7 +90,7 @@
       "desc": "",
       "price": "26W",
       "date": "2026-07-17",
-      "copies": 39281,
+      "copies": 39506,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-4.webp"
     },
     {
@@ -103,7 +103,7 @@
       "desc": "低配",
       "price": "18W",
       "date": "2026-07-17",
-      "copies": 32209,
+      "copies": 32302,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-3.webp"
     },
     {
@@ -116,7 +116,7 @@
       "desc": "满改·45发",
       "price": "45W",
       "date": "2026-07-17",
-      "copies": 29156,
+      "copies": 29351,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-9.webp"
     },
     {
@@ -129,7 +129,7 @@
       "desc": "",
       "price": "43W",
       "date": "2026-08-13",
-      "copies": 1127,
+      "copies": 1214,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-263.webp"
     },
     {
@@ -142,7 +142,7 @@
       "desc": "腰射AK·消音",
       "price": "22W",
       "date": "2026-07-17",
-      "copies": 45694,
+      "copies": 46332,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-197.webp"
     },
     {
@@ -155,7 +155,7 @@
       "desc": "性价比",
       "price": "27W",
       "date": "2026-07-17",
-      "copies": 14511,
+      "copies": 14706,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-199.webp"
     },
     {
@@ -168,7 +168,7 @@
       "desc": "",
       "price": "25W",
       "date": "2026-09-26",
-      "copies": 321,
+      "copies": 387,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-237.webp"
     },
     {
@@ -181,7 +181,7 @@
       "desc": "中配",
       "price": "25W",
       "date": "2026-07-17",
-      "copies": 29239,
+      "copies": 29514,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-239.webp"
     },
     {
@@ -194,11 +194,37 @@
       "desc": "低配",
       "price": "15W",
       "date": "2026-07-17",
-      "copies": 27640,
+      "copies": 27815,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-235.webp"
     },
     {
       "id": "aug-1",
+      "name": "AUG 突击步枪",
+      "category": "rifle",
+      "source": "https://g.aitags.cn/weapons/aug",
+      "code": "6LLEHDK0BSHDGA5UV2OCT",
+      "mode": "烽火地带",
+      "desc": "低倍消音",
+      "price": "27W",
+      "date": "2026-10-26",
+      "copies": 0,
+      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-63.webp"
+    },
+    {
+      "id": "aug-2",
+      "name": "AUG 突击步枪",
+      "category": "rifle",
+      "source": "https://g.aitags.cn/weapons/aug",
+      "code": "6LH77N40FTQSGMQLA1M7E",
+      "mode": "烽火地带",
+      "desc": "高倍消音",
+      "price": "31W",
+      "date": "2026-10-26",
+      "copies": 0,
+      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-65.webp"
+    },
+    {
+      "id": "aug-3",
       "name": "AUG 突击步枪",
       "category": "rifle",
       "source": "https://g.aitags.cn/weapons/aug",
@@ -207,34 +233,8 @@
       "desc": "集成3倍镜",
       "price": "21W",
       "date": "2026-07-17",
-      "copies": 52633,
+      "copies": 52915,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-62.webp"
-    },
-    {
-      "id": "aug-2",
-      "name": "AUG 突击步枪",
-      "category": "rifle",
-      "source": "https://g.aitags.cn/weapons/aug",
-      "code": "AUG突击步枪-烽火地带-6JI03E40ALOJG3R4BVKJS",
-      "mode": "烽火地带",
-      "desc": "消音·集成3倍镜·激...",
-      "price": "25W",
-      "date": "2026-07-17",
-      "copies": 33857,
-      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-72.webp"
-    },
-    {
-      "id": "aug-3",
-      "name": "AUG 突击步枪",
-      "category": "rifle",
-      "source": "https://g.aitags.cn/weapons/aug",
-      "code": "AUG突击步枪-烽火地带-6H4GOAG024N3UV8ISDMEK",
-      "mode": "烽火地带",
-      "desc": "红点三倍切换 可近可...",
-      "price": "25W",
-      "date": "2026-07-17",
-      "copies": 25665,
-      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-65.webp"
     },
     {
       "id": "mp5-1",
@@ -246,7 +246,7 @@
       "desc": "100腰射",
       "price": "9W",
       "date": "2026-07-17",
-      "copies": 43686,
+      "copies": 43825,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-137.webp"
     },
     {
@@ -259,7 +259,7 @@
       "desc": "",
       "price": "11W",
       "date": "2026-07-17",
-      "copies": 3482,
+      "copies": 3511,
       "image": null
     },
     {
@@ -272,7 +272,7 @@
       "desc": "静步快",
       "price": "12W",
       "date": "2026-07-17",
-      "copies": 2454,
+      "copies": 2502,
       "image": null
     },
     {
@@ -285,7 +285,7 @@
       "desc": "高腰射 均衡",
       "price": "38W",
       "date": "2026-07-17",
-      "copies": 21105,
+      "copies": 21217,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-172.webp"
     },
     {
@@ -298,7 +298,7 @@
       "desc": "92腰射·60发",
       "price": "33W",
       "date": "2026-07-17",
-      "copies": 13658,
+      "copies": 13802,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-21.webp"
     },
     {
@@ -311,7 +311,7 @@
       "desc": "腰射大弹鼓",
       "price": "",
       "date": "2026-07-17",
-      "copies": 7125,
+      "copies": 7132,
       "image": null
     },
     {
@@ -324,7 +324,7 @@
       "desc": "",
       "price": "26W",
       "date": "2026-09-03",
-      "copies": 239,
+      "copies": 278,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-50.webp"
     },
     {
@@ -337,7 +337,7 @@
       "desc": "低配",
       "price": "16W",
       "date": "2026-07-17",
-      "copies": 18141,
+      "copies": 18302,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-143.webp"
     },
     {
@@ -350,7 +350,7 @@
       "desc": "增高架+红外",
       "price": "28W",
       "date": "2026-07-17",
-      "copies": 10219,
+      "copies": 10396,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-145.webp"
     },
     {
@@ -363,7 +363,7 @@
       "desc": "",
       "price": "11W",
       "date": "2026-08-26",
-      "copies": 420,
+      "copies": 448,
       "image": "https://playerhub.df.qq.com/playerhub/60004/260316/d583758c-93a7-4fd5-a1cf-529a0b932a59.png"
     },
     {
@@ -376,7 +376,7 @@
       "desc": "卡战备必备",
       "price": "6W",
       "date": "2026-07-17",
-      "copies": 19971,
+      "copies": 20030,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-46.webp"
     },
     {
@@ -389,7 +389,7 @@
       "desc": "低倍镜",
       "price": "9W",
       "date": "2026-07-17",
-      "copies": 11461,
+      "copies": 11513,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-156.webp"
     },
     {
@@ -402,7 +402,7 @@
       "desc": "低配",
       "price": "20W",
       "date": "2026-07-17",
-      "copies": 25398,
+      "copies": 25469,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-150.webp"
     },
     {
@@ -415,7 +415,7 @@
       "desc": "84腰射 40发",
       "price": "34W",
       "date": "2026-07-17",
-      "copies": 21406,
+      "copies": 21511,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-152.webp"
     },
     {
@@ -428,7 +428,7 @@
       "desc": "长剑 40发",
       "price": "39W",
       "date": "2026-07-17",
-      "copies": 13369,
+      "copies": 13418,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-153.webp"
     },
     {
@@ -441,7 +441,7 @@
       "desc": "3/7倍镜",
       "price": "48W",
       "date": "2026-07-17",
-      "copies": 58518,
+      "copies": 59020,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-106.webp"
     },
     {
@@ -454,7 +454,7 @@
       "desc": "开镜快",
       "price": "61W",
       "date": "2026-07-17",
-      "copies": 13915,
+      "copies": 14146,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-107.webp"
     },
     {
@@ -467,7 +467,7 @@
       "desc": "3/7 弹道计算",
       "price": "70W",
       "date": "2026-07-17",
-      "copies": 13194,
+      "copies": 13452,
       "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-108.webp"
     },
     {
@@ -475,16 +475,29 @@
       "name": "AWM 狙击步枪",
       "category": "sniper",
       "source": "https://g.aitags.cn/weapons/awm",
-      "code": "6G940L008OPOB8QKQ72I8",
+      "code": "AWM狙击步枪-烽火地带-6LNF9N40FKLSP2R6J3NCE",
       "mode": "烽火地带",
-      "desc": "3/7倍镜",
-      "price": "50W",
-      "date": "2026-07-17",
-      "copies": 28741,
-      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-98.webp"
+      "desc": "高操控六倍",
+      "price": "87W",
+      "date": "2026-10-25",
+      "copies": 11,
+      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-265.webp"
     },
     {
       "id": "awm-2",
+      "name": "AWM 狙击步枪",
+      "category": "sniper",
+      "source": "https://g.aitags.cn/weapons/awm",
+      "code": "6G940L008OPOB8QKQ72I8",
+      "mode": "烽火地带",
+      "desc": "3/7倍镜",
+      "price": "108W",
+      "date": "2026-07-17",
+      "copies": 29011,
+      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-98.webp"
+    },
+    {
+      "id": "awm-3",
       "name": "AWM 狙击步枪",
       "category": "sniper",
       "source": "https://g.aitags.cn/weapons/awm",
@@ -493,21 +506,8 @@
       "desc": "6/12 弹道计算",
       "price": "",
       "date": "2026-07-17",
-      "copies": 10564,
+      "copies": 10607,
       "image": null
-    },
-    {
-      "id": "awm-3",
-      "name": "AWM 狙击步枪",
-      "category": "sniper",
-      "source": "https://g.aitags.cn/weapons/awm",
-      "code": "6GQTNR0095HC4609S9G3Q",
-      "mode": "烽火地带",
-      "desc": "8倍镜",
-      "price": "47W",
-      "date": "2026-07-17",
-      "copies": 3994,
-      "image": "https://g.aitags.cn/wp-content/uploads/2025/07/image-97.webp"
     }
   ]
 }
