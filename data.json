@@ -1,19 +1,8 @@
 {
   "date": "2026-11-08",
-  "updatedAt": "2026-11-08T03:58:42+08:00",
-  "source": "tmini",
+  "updatedAt": "2026-11-08T09:17:02+08:00",
+  "source": "kkrb",
   "maps": [
-    {
-      "mapName": "AZ3核电站",
-      "code": "2110",
-      "desc": "抵达海水处理区西侧独栋玻璃房间 输入AZ3的今日密码即可打开。",
-      "images": [
-        "https://img.71acg.net/sykb~bbs/pc/1782972821603231",
-        "https://img.71acg.net/sykb~bbs/pc/1782972916830854"
-      ],
-      "id": "az3_nuclear",
-      "yesterdayCode": "5067"
-    },
     {
       "mapName": "零号大坝",
       "code": "4079",
@@ -68,6 +57,17 @@
       ],
       "id": "tide_prison",
       "yesterdayCode": "4048"
+    },
+    {
+      "mapName": "AZ3核电站",
+      "code": "2110",
+      "desc": "抵达海水处理区西侧独栋玻璃房间 输入AZ3的今日密码即可打开。",
+      "images": [
+        "https://img.71acg.net/sykb~bbs/pc/1782972821603231",
+        "https://img.71acg.net/sykb~bbs/pc/1782972916830854"
+      ],
+      "id": "az3_nuclear",
+      "yesterdayCode": "5067"
     }
   ]
 }
